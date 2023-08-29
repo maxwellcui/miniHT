@@ -22,10 +22,10 @@ Track::Track(double k, double b)
 {
     // Constructor which creates a track with k and b
     // Get the hits
-    getHits();
+    detectHits();
 }
 
-void Track::getHits()
+void Track::detectHits()
 {
     // Radomize the direction of the track, traveling up or down
     // Seed the random number generator
@@ -41,12 +41,12 @@ void Track::getHits()
     for (double &layer : m_layers)
     {
         layer *= factor;
-        m_hits.push_back(Hit(getX(layer, false), layer));
-        m_var_hits.push_back(Hit(getX(layer, true), layer));
+        m_truth_hits.push_back(Hit(calculateX(layer, false), layer));
+        m_var_hits.push_back(Hit(calculateX(layer, true), layer));
     }
 }
 
-double Track::getX(double y, bool var) const
+double Track::calculateX(double y, bool var) const
 {
     if (var)
     {
@@ -68,8 +68,8 @@ double Track::getX(double y, bool var) const
 void Track::print() const
 {
     std::cout << "Truth k is " << m_truth_k
-              << "Truth b is " << m_truth_b << std::endl;
-    for (const Hit &hit : m_hits)
+              << " Truth b is " << m_truth_b << std::endl;
+    for (const Hit &hit : m_truth_hits)
     {
         std::cout << "Truth (x,y) = (" << hit.m_x << "," << hit.m_y << ")\n";
     }
