@@ -28,11 +28,20 @@ Track::Track(double k, double b)
 
 void Track::getHits()
 {
-    // y = kx + b
-    // For a certain y, x is
-    // x = (y-b)/k
+    // Radomize the direction of the track, traveling up or down
+    // Seed the random number generator
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    // Define the distribution for the range -1 to 1
+    std::uniform_real_distribution<double> dist(-1.0, 1.0);
+    double factor = 0.0;
+    // if the randome value is greater than 0,
+    // it's traveling upward otherwise downward
+    dist(gen) >= 0 ? factor = 1.0 : factor = -1.0;
     for (double &layer : m_layers)
     {
+        layer *= factor;
         m_hits.push_back(Hit(getX(layer, false), layer));
         m_var_hits.push_back(Hit(getX(layer, true), layer));
     }
