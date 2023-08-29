@@ -1,3 +1,7 @@
+// @author zhaoyuan.cui@cern.ch
+// @file generator/generator.cc
+// @date Aug.28, 2023
+
 #include "Track.hh"
 #include <iostream>
 #include <random>
