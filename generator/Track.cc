@@ -4,7 +4,6 @@
 
 #include "Track.hh"
 #include <iostream>
-#include <chrono>
 #include <random>
 
 Track::Track()
@@ -51,9 +50,8 @@ double Track::getX(double y, bool var) const
 {
     if (var)
     {
-        // get a variation X
-        unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-        std::default_random_engine generator(seed);
+        std::random_device rd;
+        std::default_random_engine generator(rd());
         // Define random generator with Gaussian distribution
         const double mean = 0.0;
         const double stddev = 0.1;
