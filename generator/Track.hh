@@ -36,7 +36,7 @@ public:
 private:
     std::vector<Hit> m_truth_hits; // truth hits
     std::vector<Hit> m_var_hits;   // variation hits: to mimic inefficiency
-    std::vector<double> m_layers{1.0, 1.5, 2.3, 3.0, 3.5, 4.2, 5.5, 7.0};
+    std::vector<double> m_layers{1.7, 2.8, 3.5, 4.2, 5.1, 6.8, 7.1, 10.0};
 
     double m_truth_k;
     double m_truth_b;

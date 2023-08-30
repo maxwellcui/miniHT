@@ -1,0 +1,1 @@
+g++ -I. generator.cc Track.cc -o generator
