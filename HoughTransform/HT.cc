@@ -43,26 +43,27 @@ int main()
     }
 
     // Create 2-D histo for accumulator
-    double x_low = -50.0;
-    double x_high = 50.0;
-    double x_step = 200;
-    double x_size = (x_high-x_low)/x_step;
-    double y_low = -50.0;
-    double y_high = 50.0;
+    double x_low = -100.0;
+    double x_high = 100.0;
+    double x_step = 2000;
+    double x_size = (x_high - x_low) / x_step;
+    double y_low = -10.0;
+    double y_high = 10.0;
     double y_step = 200;
 
     TH2D accumulator("HTaccumulator", "HTaccumulator; k; b", x_step, x_low, x_high, y_step, y_low, y_high);
     for (long unsigned int i = 0; i < xValues.size(); i++)
     {
-        for (double j = x_low; j < x_high; j=j+x_size)
+        for (double j = x_low; j < x_high; j = j + x_size)
             accumulator.Fill(j, yValues.at(i) - j * xValues.at(i));
     }
 
     TCanvas c1("c1", "c1", 1900, 1900);
     accumulator.SetStats(0);
     accumulator.Draw("colz0");
-
     c1.Print("./accumulator.png");
+    accumulator.Draw("lego");
+    c1.Print("./accumulator_lego.png");
 
     return 0;
 }

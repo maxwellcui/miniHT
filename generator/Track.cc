@@ -54,7 +54,7 @@ double Track::calculateX(double y, bool var) const
         std::default_random_engine generator(rd());
         // Define random generator with Gaussian distribution
         const double mean = 0.0;
-        const double stddev = 0.05;
+        const double stddev = 0.001;
         std::normal_distribution<double> dist(mean, stddev);
         return (y - m_truth_b) / m_truth_k + dist(generator);
     }
